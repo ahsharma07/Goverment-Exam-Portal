@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<!-- Google font -->
+{% load static %}
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway:300,400,700,900' rel='stylesheet' type='text/css'>
+<!-- Css -->
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/font-awesome.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/custom.css' %}">
+<!-- <link href="icofont/icofont.min.css" rel="stylesheet"> -->
+<!-- Google font -->
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Raleway:300,400,700,900' rel='stylesheet' type='text/css'>
+<!-- Css -->
+<title>{% block title %} {% endblock %}</title>
+</head><body id="page-top" class="home">
+<!-- PAGE WRAP -->
+<div id="page-wrap">
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="pre-icon">
+      <div class="pre-item pre-item-1"></div>
+      <div class="pre-item pre-item-2"></div>
+      <div class="pre-item pre-item-3"></div>
+      <div class="pre-item pre-item-4"></div>
+    </div>
+  </div>
+  <!-- END / PRELOADER -->
+  <!-- HEADER -->
+  <header id="header" class="fixed-top ">
+    <div id="topbar" class="align-items-center">
+      <div class="container align-items-center">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="contact-info mr-auto">
+              <ul>
+                <li><i class="icofont-envelope"></i><a href="mailto:contact@example.com">contact@example.com</a></li>
+                <li><i class="icofont-phone"></i> +1 5589 55488 55</li>
+                <li><i class="icofont-clock-time icofont-flip-horizontal"></i> Mon-Fri 9am - 5pm</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+           <div id="google_translate_element"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+        <div class="cta">
+        {% if user.is_anonymous %}
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> Login/SignUp </button>
+          <!-- Modal -->
+        {% endif %}
+          <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>
+                <div class="modal-body">
+                  <div id="loginbox" class="mainbox col-md-12">
+                    <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <div class="panel-title">Sign In</div>
+                        <div style="float:right;font-size: 80%;padding: 10px 0 0;"><a href="#">Forgot password?</a></div>
+                      </div>
+                      <div style="padding-top:30px" class="panel-body">
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                        <form id="loginform" class="form-horizontal" role="form" method="post" action="{% url 'login' %}?next={{request.path}} " >
+                          {% csrf_token %}
+                          <div style="margin-bottom: 15px" class="input-group"> <span class="input-group-addon"><i class="fas fa-user"></i></span>
+                            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username ">
+                          </div>
+                          <div class="input-group"> <span class="input-group-addon"><i class="fas fa-lock"></i></span>
+                            <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+                          </div>
+                          <div class="input-group">
+                            <div class="checkbox">
+                              <div class="form-group">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                                  <label class="form-check-label" for="gridCheck"> Check me out </label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <!-- Button -->
+                            <div class=" controls">
+                              <button type="submit" id="btn-login"   class="mc-btn btn-style-1">Login </button>
+                              <a id="btn-fblogin" href="#" class="mc-btn btn-style-1">Login with Facebook</a> </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="control">
+                              <div style="border-top: 1px solid#888;padding-top:15px;font-size:85%;color: black;"> Don't have an account! <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()"> Sign Up Here </a> </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="signupbox" style="display:none;" class="mainbox col-md-12">
+                    <div class="panel panel-info">
+                      <div class="panel-heading">
+                        <div class="panel-title">Sign Up</div>
+                        <div style="float:right; font-size: 85%; "><a id="signinlink" href="#" class="mc-btn btn-style-1" onClick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
+                      </div>
+                      <div class="panel-body">
+                        <form id="signupform" class="form-horizontal" role="form" method="post" action="{% url 'register' %}?next={{request.path}}">{% csrf_token %}
+                          <div id="signupalert" style="display:none" class="alert alert-danger">
+                            <p>Error:</p>
+                            <span></span> </div>
+
+                          <div class="form-group">
+                            <div class="input-group"><span class="input-group-addon"><i class="fas fa-user"></i></span>
+                              <input type="text" class="form-control" name="name" placeholder="Name">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                                            <div class="input-group"><span class="input-group-addon"><i class="fas fa-at"></i></span>
+                              <input type="email" class="form-control" name="email" placeholder="Email Address">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                           <div class="input-group"><span class="input-group-addon"><i class="fas fa-user"></i></span>
+                              <input type="text" class="form-control" name="username" placeholder=" Username ">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-group"><span class="input-group-addon"> <i class="fas fa-lock"></i></span>
+                              <input type="password" class="form-control" name="password" placeholder="Password">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-group"><span class="input-group-addon"><i class="fas fa-envelope"></i></span>
+                              <input type="text" class="form-control" name="mobile" placeholder="Mobile Number">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <!-- Button -->
+                            <button type="submit" id="btn-signup"  class="mc-btn btn-style-1"> Sign Up</button>
+                            <span style="margin-left:8px;">or</span> </div>
+                          <div style="border-top: 1px solid #999; padding-top:20px" class="form-group">
+                            <button id="btn-fbsignup" type="button" class="mc-btn btn-style-1"><i class="fab fa-facebook-f"></i> &nbsp; Sign Up with Facebook</button>
+                            <button id="btn-fbsignup" type="button" class="mc-btn btn-style-1"><i class="fas fa-envelope"></i> &nbsp; Sign Up with Gmail</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- Container -->
+    </div>
+    <!-- Top bar -->
+    <div class="container d-flex align-items-center menu-p">
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="#header" class="logo mr-auto scrollto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <nav class="navbar navbar-expand-lg navbar-light ">
+        <h1 class="logo mr-auto"><a href="#header" class="scrollto">Anyar</a></h1>
+        <button class="navbar-toggler toggler-example collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fas fa-bars fa-1x" aria-hidden="true"></i></span></button>
+        <div class="nav-menu navbar-collapse collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="active"><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'aptitude' %}">Aptitude</a></li>
+            <li><a href="{% url 'logical' %}">Logical</a></li>
+            <li><a href="{% url 'verbal' %}">Verbal</a></li>
+            <li><a href="{% url 'general knowledge' %}">General Knowledge</a></li>
+            <li><a href="{% url 'current affairs' %}">Current Affairs</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+            {% if user.is_authenticated %}
+            <!-- Example single danger button -->
+            <li>
+              <div class="btn-group">
+                <button  class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{user.username}} </button>
+                <div class="dropdown-menu"> <a class="dropdown-item" href="{% url 'logout' %}">Logout</a> {% if perms.accounts.addquestions %} <a class="dropdown-item" href="/accounts/profile/{{user.username}}">All Questions</a> <a class="dropdown-item" href="/accounts/{{user.username}}/addquestion">Add Question</a> {% endif %} </div>
+              </div>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+      <!-- .nav-menu -->
+    </div>
+  </header>
+  <div class="container"> {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert"> <strong>{{ message }}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>
+    {% endfor %}
+    {% endif %} </div>
+  {% block content %}
+  {% endblock %}
+  
+  {% comment %} Footer Area {% endcomment %}
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <!-- Footer -->
+  <footer class="page-footer font-small mdb-color pt-4">
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+      <!-- Footer links -->
+      <div class="row text-center text-md-left mt-3 pb-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-3 ">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Company name</h6>
+          <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+            consectetur
+            adipisicing elit.</p>
+        </div>
+        <!-- Grid column -->
+        <hr class="w-100 clearfix d-md-none">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-3 ">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Products</h6>
+          <p> <a href="#!">MDBootstrap</a> </p>
+          <p> <a href="#!">MDWordPress</a> </p>
+          <p> <a href="#!">BrandFlow</a> </p>
+          <p> <a href="#!">Bootstrap Angular</a> </p>
+        </div>
+        <!-- Grid column -->
+        <hr class="w-100 clearfix d-md-none">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-3 ">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
+          <p> <a href="#!">Your Account</a> </p>
+          <p> <a href="#!">Become an Affiliate</a> </p>
+          <p> <a href="#!">Shipping Rates</a> </p>
+          <p> <a href="#!">Help</a> </p>
+        </div>
+        <!-- Grid column -->
+        <hr class="w-100 clearfix d-md-none">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-3 ">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+          <p> <i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
+          <p> <i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
+          <p> <i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+          <p> <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Footer links -->
+      <hr>
+      <!-- Grid row -->
+      <div class="row d-flex align-items-center">
+        <!-- Grid column -->
+        <div class="col-md-7 col-lg-8">
+          <!--Copyright-->
+          <p class="text-center text-md-left">© 2020 Copyright: <a href="https://mdbootstrap.com/"> <strong> MDBootstrap.com</strong> </a> </p>
+        </div>
+        <!-- Grid column -->
+        <!-- Grid column -->
+        <div class="col-md-5 col-lg-4 ml-lg-0">
+          <!-- Social buttons -->
+          <div class="text-center text-md-right">
+            <ul class="list-unstyled list-inline">
+              <li class="list-inline-item"> <a class="btn-floating btn-sm rgba-white-slight mx-1 waves-effect waves-light"> <i class="fab fa-facebook-f"></i> </a> </li>
+              <li class="list-inline-item"> <a class="btn-floating btn-sm rgba-white-slight mx-1 waves-effect waves-light"> <i class="fab fa-twitter"></i> </a> </li>
+              <li class="list-inline-item"> <a class="btn-floating btn-sm rgba-white-slight mx-1 waves-effect waves-light"> <i class="fab fa-google-plus-g"></i> </a> </li>
+              <li class="list-inline-item"> <a class="btn-floating btn-sm rgba-white-slight mx-1 waves-effect waves-light"> <i class="fab fa-linkedin-in"></i> </a> </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+    <!-- Footer Links -->
+  </footer>
+  <!-- Footer -->
+  <!-- END / FOOTER -->
+</div>
+<!-- END / PAGE WRAP -->
+<!-- Load jQuery -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="{% static 'home/js/main.js' %}"></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+{% block js %}
+{% endblock %}
+</body>
+</html>

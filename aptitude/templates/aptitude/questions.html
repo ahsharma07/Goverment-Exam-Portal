@@ -1,0 +1,18 @@
+
+{% block content%}
+<div class="container">
+      {% for ques in questions %}
+      <div class="container">
+        <label>{{forloop.counter}} {{ques.question_name|title}}</label>
+        <div>
+          <label > [A]{{ques.option1|capfirst}}</label>
+          <label > [B]{{ques.option2|capfirst}}</label>
+          <label > [C]{{ques.option3|capfirst}}</label>
+          <label > [D]{{ques.option4|capfirst}}</label>
+        <button class="btn btn-primary">Show Answer</button>
+        </div>
+
+      </div>
+  {% endfor%}
+</div>
+{% endblock%}

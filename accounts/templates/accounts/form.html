@@ -1,0 +1,44 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<div class="container mb30">
+<form method="post">{% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label><strong>Question</strong></label>
+      <input type="text" class="form-control" id="question" name="question" value="{{form.question_name}}">
+    </div>
+     <div class="form-group col-md-6">
+      <label><strong>Answer</strong></label>
+      <input type="text" class="form-control" id="answer" name="answer" value="{{form.right_option}}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Option 1</label>
+      <input type="text" class="form-control" id="option1" name="option1" value="{{form.option1}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label>Option 2</label>
+      <input type="text" class="form-control" id="option2" name="option2" value="{{form.option2}}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Option 3</label>
+      <input type="text" class="form-control" id="option3" name="option3" value="{{form.option3}}">
+    </div>
+    <div class="form-group col-md-6">
+      <label>Option 4</label>
+      <input type="text" class="form-control" id="option4" name="option4" value="{{form.option4}}">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-12">
+      <label><strong>Description</strong></label>
+      <textarea class="form-control" id="discription" name="description" rows="2" >{{form.description}}</textarea>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}

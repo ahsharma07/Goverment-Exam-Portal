@@ -1,0 +1,30 @@
+{% extends 'home/base.html' %}
+{% block content%}
+
+<div class="container mb30" id="subject">
+<div class="row">
+    {% for subj in subSubject %}
+  <div class="col-md-3">
+    <div class="card ">
+      <div class="card-body">
+        <h5 class="card-title">{{subj.sub_subject|title}}</h5>
+        <p class="card-text">{{subj.sub_description}}</p>
+        <a href="{{subj.sub_subject}}/questions" class="btn btn-primary">Explore More</a>
+      </div>
+ </div>
+    </div>
+  {% endfor %}
+
+  </div>
+</div>
+
+{% endblock %}
+{% block js%}
+<script type="text/javascript">
+$(document).ready(function(){
+  $("button").click(function(){
+    getsubject=$(this).val();
+  });
+});
+</script>
+{% endblock%}

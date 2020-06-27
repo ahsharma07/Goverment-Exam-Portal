@@ -1,0 +1,80 @@
+{% extends 'home/base.html' %}
+{% block content%}
+<div class="container mb30">
+{% for ques in questions %}
+<div class="row mb20">
+  <div class="col-md-12">
+    <div class="block">
+      <label>{{forloop.counter}} {{ques.question_name|title}}</label>
+    </div>
+    <label> [A] {{ques.option1|capfirst}}</label>
+    <label> [B] {{ques.option2|capfirst}}</label>
+    <label> [C] {{ques.option3|capfirst}}</label>
+    <label> [D] {{ques.option4|capfirst}}</label>
+  </div>
+  <div class="block question col-md-12">
+    <div class="view-answer iblock"> {% if user.is_authenticated %}
+      <button class="btn btn-primary show rn"><i class="fa fa-reply" aria-hidden="true"></i> View Answer</button>
+      <div class="showanswer1">
+        <p>Correct Answer is {{ques.right_option}}</p>
+        <p class="showanswer" id="showanswer">{{ques.description}}</p>
+      </div>
+      {% else %}
+      <div class="cta">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> Show Answer </button>
+      </div>
+      {% endif %} </div>
+    <div class="workspace iblock">
+       <button class="btn btn-primary show rn"><i class="fa fa-reply" aria-hidden="true"></i> Work</button>
+      <div class="showanswer1">
+         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>      </div>
+    </div>
+    <div class="workspace iblock">
+       <a href="#" class="btn btn-primary rn"><i class="fa fa-reply" aria-hidden="true"></i> Discuss in Forum</a>
+    </div>
+    <div class="workspace iblock">
+       <button class="btn btn-primary show rn"><i class="fa fa-reply" aria-hidden="true"></i> Query</button>
+      <div class="showanswer1 sasas">
+          <form>
+         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">
+
+
+Name : 
+Email : </textarea>
+         <button type="submit" class="btn btn-primary">Submit</button></form></div>
+    </div>
+  </div>
+</div>
+  {% endfor%}
+  {% if questions.has_other_pages %}
+  <ul class="pagination">
+    {% if questions.has_previous %}
+    <li><a href="?page={{ questions.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+    <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in questions.paginator.page_range %}
+    {% if questions.number == i %}
+    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+    {% else %}
+    <li><a href="?page={{ i }}">{{ i }}</a></li>
+    {% endif %}
+    {% endfor %}
+    {% if questions.has_next %}
+    <li><a href="?page={{ questions.next_page_number }}">&raquo;</a></li>
+    {% else %}
+    <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+  {% endif %} </div>
+{% endblock%}
+{% block js %}
+<script>
+$('.showanswer1').hide();
+
+$(".show").click(function(){
+  //  $(this).show();
+  $(this).next().toggle();
+});
+</script>
+{% endblock %}
